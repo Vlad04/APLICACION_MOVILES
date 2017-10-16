@@ -1,0 +1,107 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vladimir.movilesproyecto_.FragmentWithButton">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp" />
+
+        <EditText
+            android:id="@+id/Otra_cantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Expert"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="59dp"
+            android:ems="10"
+            android:hint="Otra cantidad?"
+            android:inputType="textPersonName"
+            android:textColorHint="#80fffdfd" />
+
+
+        <Button
+            android:id="@+id/fragment_button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/holo_red_light"
+            android:text="Recargar"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/Expert"
+            android:layout_width="90dp"
+            android:layout_height="37dp"
+            android:layout_alignLeft="@+id/Medium"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/Medium"
+            android:layout_below="@+id/Medium"
+            android:layout_marginTop="13dp"
+            android:background="@color/colorAccent"
+            android:text="Expert"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/Beginner"
+            android:layout_width="90dp"
+            android:layout_height="37dp"
+            android:layout_alignLeft="@+id/Otra_cantidad"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/Otra_cantidad"
+            android:layout_marginTop="38dp"
+            android:background="@color/colorAccent"
+            android:text="Beginner"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/Medium"
+            android:layout_width="90dp"
+            android:layout_height="37dp"
+            android:layout_alignLeft="@+id/Beginner"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/Beginner"
+            android:layout_below="@+id/Beginner"
+            android:layout_marginTop="14dp"
+            android:background="@color/colorAccent"
+            android:text="Medium"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/Otra_cantidad"
+            android:layout_alignStart="@+id/Otra_cantidad"
+            android:layout_below="@+id/Otra_cantidad"
+            android:layout_marginTop="32dp"
+            android:text="Dinero actual:"
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:id="@+id/dinero_actual"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:text=""
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_toRightOf="@+id/textView"
+            android:layout_toEndOf="@+id/textView" />
+    </RelativeLayout>
+
+</FrameLayout>

@@ -4,13 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.vladimir.movilesproyecto_.MainActivity">
+    tools:context="com.example.vladimir.movilesproyecto_.MainActivity"
+    android:background="@drawable/background_app">
 
-    <Button
-        android:id="@+id/back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="back"
+
+    <RelativeLayout
+        android:layout_width="370dp"
+        android:layout_height="503dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <RelativeLayout
+            android:id="@+id/fragment_space"
+            android:layout_width="367dp"
+            android:layout_height="275dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/juegos_proximos"
+            android:layout_marginTop="12dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="141dp">
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/Sign_out_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/holo_red_light"
+            android:shape="oval"
+            android:text="Sign out"
+            android:textColor="@android:color/white"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="385dp" />
+
+        <Button
+            android:id="@+id/ver_perfil"
+            android:layout_width="141dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="34dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="Ver perfil"
+            tools:layout_editor_absoluteX="195dp"
+            tools:layout_editor_absoluteY="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/recargar_saldo"
+            android:layout_width="154dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/ver_perfil"
+            android:layout_alignBottom="@+id/ver_perfil"
+            android:layout_alignLeft="@+id/juegos_proximos"
+            android:layout_alignStart="@+id/juegos_proximos"
+            android:background="@android:color/holo_orange_dark"
+            android:onClick="Create_fragment"
+            android:text="Recargar saldo"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="25dp" />
+
+        <Button
+        android:id="@+id/juegos_proximos"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+            android:background="@android:color/holo_orange_dark"
+        android:onClick="Create_fragment"
+        android:text="Ver juegos proximos"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="116dp" />
+        tools:layout_editor_absoluteY="82dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/ver_perfil"
+            android:layout_alignRight="@+id/ver_perfil"
+            android:layout_alignEnd="@+id/ver_perfil" />
+
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
