@@ -23,7 +23,6 @@
             android:hint="email"
             android:imeActionId="@+id/login"
             android:imeOptions="actionUnspecified"
-            android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@android:color/white"
@@ -60,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
-            android:text="Forgot Password?"
+            android:text="Olvidaste tu contraseña?"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light"
             android:textColorHint="@android:color/background_light" />
@@ -73,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
-            android:text="Already registered, LogIn me!"
+            android:text="Ya tengo cuenta"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light"
             android:textSize="15dp" />

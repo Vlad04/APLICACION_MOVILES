@@ -94,12 +94,12 @@ public class LogInActivity extends Activity {
 
                 //Si no existe informacion de email, se le pide al usuario ingresar su email
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ingrese email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //Si no existe informacion de password, se le pide al usuario ingresar su password
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ingrese contraseña", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -124,7 +124,7 @@ public class LogInActivity extends Activity {
                                     //En el caso de que el password sea menor de 6 caracteres (lo cual no esta permitido)
                                     //enviara un mensaje de error tratandose sobre lo mismo.
                                     if (password.length() < 6) {
-                                        Toast.makeText(LogInActivity.this, "password must be more that 5 characters", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LogInActivity.this, "La contrase;a debe tener mas de 5 caracteres", Toast.LENGTH_LONG).show();
                                     } else {
                                         //Si no es por el tamaño de password, entonces es un error de autentificacion
                                         //lo cual arroja otro mensaje de alerta
@@ -142,15 +142,16 @@ public class LogInActivity extends Activity {
                                     final String routine_name = "Usuario " + name.getText().toString();
 
                                     DatabaseReference email_Ref = Root_reference.child(routine_name).child("Email ");
-                                    DatabaseReference name_Ref = Root_reference.child(routine_name).child("Name ");
+                                    DatabaseReference name_Ref = Root_reference.child(routine_name).child("Nombre ");
                                     DatabaseReference password_Ref = Root_reference.child(routine_name).child("Password ");
-                                    DatabaseReference Points_Ref = Root_reference.child(routine_name).child("Points ");
+                                    DatabaseReference Points_Ref = Root_reference.child(routine_name).child("Puntos ");
 
                                     name_Ref.setValue(name.getText().toString().trim());
                                     email_Ref.setValue(inputEmail.getText().toString().trim());
                                     password_Ref.setValue(inputPassword.getText().toString().trim());
                                     Points_Ref.setValue(points);
                                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                                    intent.putExtra("name",name.getText().toString().trim());
                                     startActivity(intent);
                                     finish();
                                 }

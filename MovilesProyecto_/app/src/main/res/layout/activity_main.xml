@@ -35,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:background="@android:color/holo_red_light"
             android:shape="oval"
-            android:text="Sign out"
+            android:text="Cerrar sesión"
             android:textColor="@android:color/white"
             tools:layout_editor_absoluteX="117dp"
             tools:layout_editor_absoluteY="385dp" />
@@ -74,7 +74,6 @@
         android:layout_width="320dp"
         android:layout_height="48dp"
             android:background="@android:color/holo_orange_dark"
-        android:onClick="Create_fragment"
         android:text="Ver juegos proximos"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="82dp"

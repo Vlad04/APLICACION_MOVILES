@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_generar_plan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background_app"
+    tools:context="com.example.vladimir.movilesproyecto_.VerPerfil">
+
+    <Button
+        android:text="Generate"
+        android:id="@+id/generate_plan_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:shape="oval"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_red_light" />
+
+
+    <TextView
+        android:id="@+id/Nombre_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/rutina_textview"
+        android:layout_toRightOf="@+id/rutina_textview"
+        android:text="Nombre"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="29dp"
+        android:id="@+id/rutina_textview" />
+
+    <TextView
+        android:id="@+id/Email_valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Password_TextView"
+        android:layout_alignLeft="@+id/Password_valor"
+        android:layout_alignStart="@+id/Password_valor"
+        android:text="vladiir.rod96@gmail.com"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    <TextView
+        android:id="@+id/Password_valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Password_TextView"
+        android:layout_alignBottom="@+id/Password_TextView"
+        android:layout_alignEnd="@+id/generate_plan_button"
+        android:layout_alignRight="@+id/generate_plan_button"
+        android:text="vladiir.rod96@gmail.com"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+
+    <TextView
+        android:id="@+id/Email_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rutina_textview"
+        android:layout_toEndOf="@+id/rutina_textview"
+        android:layout_toRightOf="@+id/rutina_textview"
+        android:text="Email"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    <TextView
+        android:id="@+id/Password_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Email_TextView"
+        android:layout_marginTop="26dp"
+        android:layout_toEndOf="@+id/rutina_textview"
+        android:layout_toRightOf="@+id/rutina_textview"
+        android:text="Password"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+
+    <TextView
+        android:id="@+id/Puntos_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Password_TextView"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/rutina_textview"
+        android:layout_toRightOf="@+id/rutina_textview"
+        android:text="Puntos"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    <TextView
+        android:id="@+id/Nombre_valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Email_valor"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Email_valor"
+        android:text="vladiir.rod96@gmail.com"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/Puntos_valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Puntos_TextView"
+        android:layout_alignBottom="@+id/Puntos_TextView"
+        android:layout_alignEnd="@+id/Password_valor"
+        android:layout_alignLeft="@+id/Email_valor"
+        android:layout_alignRight="@+id/Password_valor"
+        android:layout_alignStart="@+id/Email_valor"
+        android:text="vladiir.rod96@gmail.com"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+
+</RelativeLayout>
