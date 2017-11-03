@@ -7,99 +7,170 @@
     android:background="@drawable/background_list"
     tools:context="com.example.vladimir.movilesproyecto_.GenerarJuegos">
 
-    <CheckBox
-        android:id="@+id/Pumas_checkbox"
-        android:layout_width="95dp"
-        android:layout_height="33dp"
+    <RelativeLayout
+        android:layout_width="393dp"
+        android:layout_height="523dp"
+        tools:layout_editor_absoluteX="-7dp"
+        tools:layout_editor_absoluteY="-5dp">
+
+        <CheckBox
+            android:id="@+id/empate_checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empate"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="30dp"
+            android:layout_alignBottom="@+id/Pumas_checkbox"
+            android:layout_centerHorizontal="true" />
+
+        <CheckBox
+            android:id="@+id/Pumas_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Pumas"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="30dp" />
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="83dp"
+            android:layout_marginTop="18dp"
+            android:layout_below="@+id/America_checkbox"
+            android:layout_alignLeft="@+id/Tigres_checkbox"
+            android:layout_alignStart="@+id/Tigres_checkbox" />
 
-    <CheckBox
-        android:id="@+id/empate_checkbox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Empate"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="30dp" />
+        <CheckBox
+            android:id="@+id/America_checkbox"
+            android:layout_width="95dp"
+            android:layout_height="33dp"
+            android:text="América"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="30dp"
+            android:layout_marginTop="17dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/Pumas_checkbox" />
 
-    <CheckBox
-        android:id="@+id/Toluca_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toluca"
-        tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="30dp" />
+        <Button
+            android:id="@+id/Apostar_button"
+            android:layout_width="218dp"
+            android:layout_height="48dp"
+            android:background="@android:color/holo_red_light"
+            android:text="Apostar"
+            android:textColor="@android:color/white"
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="390dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="58dp" />
 
-    <CheckBox
-        android:id="@+id/America_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="América"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="83dp" />
+        <CheckBox
+            android:id="@+id/Atlas_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Atlas"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="189dp"
+            android:layout_alignBaseline="@+id/empate_checkbox4"
+            android:layout_alignBottom="@+id/empate_checkbox4"
+            android:layout_alignLeft="@+id/Pachuca_checkbox"
+            android:layout_alignStart="@+id/Pachuca_checkbox" />
 
-    <CheckBox
-        android:id="@+id/empate_checkbox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Empate"
-        tools:layout_editor_absoluteY="83dp"
-        tools:layout_editor_absoluteX="145dp" />
+        <CheckBox
+            android:id="@+id/empate_checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empate"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="83dp"
+            android:layout_alignBaseline="@+id/Chivas_checkbox"
+            android:layout_alignBottom="@+id/Chivas_checkbox"
+            android:layout_alignLeft="@+id/empate_checkbox1"
+            android:layout_alignStart="@+id/empate_checkbox1" />
 
-    <CheckBox
-        android:id="@+id/Chivas_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chivas"
-        tools:layout_editor_absoluteY="83dp"
-        tools:layout_editor_absoluteX="274dp" />
+        <CheckBox
+            android:id="@+id/Toluca_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toluca"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="30dp"
+            android:layout_alignBaseline="@+id/empate_checkbox1"
+            android:layout_alignBottom="@+id/empate_checkbox1"
+            android:layout_toRightOf="@+id/empate_checkbox1"
+            android:layout_toEndOf="@+id/empate_checkbox1"
+            android:layout_marginLeft="29dp"
+            android:layout_marginStart="29dp" />
 
-    <CheckBox
-        android:id="@+id/Tigres_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tigres"
-        tools:layout_editor_absoluteY="137dp"
-        tools:layout_editor_absoluteX="16dp" />
+        <CheckBox
+            android:id="@+id/Tigres_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tigres"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="137dp"
+            android:layout_alignBaseline="@+id/empate_checkbox3"
+            android:layout_alignBottom="@+id/empate_checkbox3"
+            android:layout_alignLeft="@+id/Cruzazul_checkbox"
+            android:layout_alignStart="@+id/Cruzazul_checkbox" />
 
-    <CheckBox
-        android:id="@+id/empate_checkbox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Empate"
-        tools:layout_editor_absoluteY="137dp"
-        tools:layout_editor_absoluteX="145dp" />
+        <CheckBox
+            android:id="@+id/Cruzazul_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cruz azul"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="189dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginEnd="19dp"
+            android:layout_alignBaseline="@+id/empate_checkbox4"
+            android:layout_alignBottom="@+id/empate_checkbox4"
+            android:layout_toLeftOf="@+id/empate_checkbox4"
+            android:layout_toStartOf="@+id/empate_checkbox4" />
 
-    <CheckBox
-        android:id="@+id/Pachuca_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pachuca"
-        tools:layout_editor_absoluteY="137dp"
-        tools:layout_editor_absoluteX="274dp" />
+        <CheckBox
+            android:id="@+id/Pachuca_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pachuca"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="137dp"
+            android:layout_alignBaseline="@+id/empate_checkbox3"
+            android:layout_alignBottom="@+id/empate_checkbox3"
+            android:layout_alignLeft="@+id/Chivas_checkbox"
+            android:layout_alignStart="@+id/Chivas_checkbox" />
 
-    <CheckBox
-        android:id="@+id/Cruzazul_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cruz azul"
-        tools:layout_editor_absoluteY="189dp"
-        tools:layout_editor_absoluteX="16dp" />
+        <CheckBox
+            android:id="@+id/empate_checkbox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empate"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="189dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/empate_checkbox3"
+            android:layout_alignLeft="@+id/empate_checkbox3"
+            android:layout_alignStart="@+id/empate_checkbox3" />
 
-    <CheckBox
-        android:id="@+id/empate_checkbox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Empate"
-        tools:layout_editor_absoluteY="189dp"
-        tools:layout_editor_absoluteX="145dp" />
+        <CheckBox
+            android:id="@+id/Chivas_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chivas"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="83dp"
 
-    <CheckBox
-        android:id="@+id/Atlas_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Atlas"
-        tools:layout_editor_absoluteY="189dp"
-        tools:layout_editor_absoluteX="274dp" />
+            android:layout_alignBaseline="@+id/America_checkbox"
+            android:layout_alignBottom="@+id/America_checkbox"
+            android:layout_alignRight="@+id/Toluca_checkbox"
+            android:layout_alignEnd="@+id/Toluca_checkbox" />
+
+        <CheckBox
+            android:id="@+id/empate_checkbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empate"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="137dp"
+            android:layout_below="@+id/empate_checkbox1"
+            android:layout_alignLeft="@+id/empate_checkbox1"
+            android:layout_alignStart="@+id/empate_checkbox1"
+            android:layout_marginTop="38dp" />
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
