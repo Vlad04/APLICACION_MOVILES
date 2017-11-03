@@ -78,7 +78,7 @@ public class VerPerfil extends AppCompatActivity {
         Intent name_intent=this.getIntent();
         final String name=name_intent.getExtras().getString("name");
 
-        reference = database.getReference(name);
+        reference = database.getReference(name).child("Perfil");
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override

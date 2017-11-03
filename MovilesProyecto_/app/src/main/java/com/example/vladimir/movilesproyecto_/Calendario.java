@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
@@ -36,6 +37,7 @@ public class Calendario extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, month, dayOfMont);
                 int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
                 //Toast.makeText(getApplicationContext(),dayOfWeek+"/",Toast.LENGTH_SHORT).show();
                 //Log.d("day of week", String.valueOf(dayOfWeek));
 
@@ -104,11 +106,7 @@ public class Calendario extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        // do nothing.
-        Toast.makeText(getApplicationContext(), "Please select one day", Toast.LENGTH_SHORT).show();
-    }
+
 
 
 }

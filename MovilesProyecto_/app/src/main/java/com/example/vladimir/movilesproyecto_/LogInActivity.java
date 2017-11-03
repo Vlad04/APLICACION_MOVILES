@@ -143,10 +143,10 @@ public class LogInActivity extends Activity {
                                     //Points_Ref.setValue("500");
                                     final String routine_name = "Usuario " + result;
 
-                                    final DatabaseReference email_Ref = Root_reference.child(routine_name).child("Email ");
-                                    final DatabaseReference name_Ref = Root_reference.child(routine_name).child("Nombre ");
-                                    final DatabaseReference password_Ref = Root_reference.child(routine_name).child("Password ");
-                                    final DatabaseReference Points_Ref = Root_reference.child(routine_name).child("Puntos ");
+                                    final DatabaseReference email_Ref = Root_reference.child(routine_name).child("Perfil").child("Email ");
+                                    final DatabaseReference name_Ref = Root_reference.child(routine_name).child("Perfil").child("Nombre ");
+                                    final DatabaseReference password_Ref = Root_reference.child(routine_name).child("Perfil").child("Password ");
+                                    final DatabaseReference Points_Ref = Root_reference.child(routine_name).child("Perfil").child("Puntos ");
                                     DatabaseReference check_if_exist=Root_reference.child(routine_name);
                                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                                     DatabaseReference reference;

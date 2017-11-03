@@ -83,7 +83,7 @@ public class FragmentWithButton extends Fragment implements ValueEventListener {
         profesional=(Button)view.findViewById(R.id.Medium);
         clase_mundial=(Button)view.findViewById(R.id.Expert);
         final int[] current_points = new int[1];
-        reference = database.getReference("Usuario "+user);
+        reference = database.getReference("Usuario "+user).child("Perfil");
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -110,7 +110,7 @@ public class FragmentWithButton extends Fragment implements ValueEventListener {
                 //Log.d("actual email", String.valueOf(email_Ref));
                 //String user_name=user.getDisplayName();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Puntos ");
+                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
                 puntos_recarga=100+puntos_actuales_int;
                 puntos_reference.setValue(puntos_recarga);
 
@@ -126,7 +126,7 @@ public class FragmentWithButton extends Fragment implements ValueEventListener {
             public void onClick(View view) {
                 String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Puntos ");
+                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
                 puntos_recarga=500+puntos_actuales_int;
                 puntos_reference.setValue(puntos_recarga);
             }
@@ -136,7 +136,7 @@ public class FragmentWithButton extends Fragment implements ValueEventListener {
             public void onClick(View view) {
                 String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Puntos ");
+                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
                 puntos_recarga=1000+puntos_actuales_int;
                 puntos_reference.setValue(puntos_recarga);            }
         });

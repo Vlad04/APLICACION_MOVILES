@@ -1,5 +1,6 @@
 package com.example.vladimir.movilesproyecto_;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
@@ -35,6 +36,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.Calendar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,6 +50,10 @@ public class GenerarJuegos extends AppCompatActivity {
     CheckBox america, pumas, toluca, chivas, tigres, pachuca, cruz_azul, atlas;
     CheckBox empate1,empate2,empate3,empate4;
     Button apostar;
+    private FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+    private DatabaseReference Root_reference=firebaseDatabase.getReference();
+    String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,50 +75,97 @@ public class GenerarJuegos extends AppCompatActivity {
         apostar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                String formattedDate = df.format(c.getTime());
+
+                int day = calendar.get(Calendar.DATE);
 
                 //JUEGO PUMAS TOLUCA
                    if(pumas.isChecked() && !toluca.isChecked() && !empate1.isChecked())
                    {
                        Log.d("la apuesta es por","pumas toluca");
+                        DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Juego");
+                        apuesta.setValue("Pumas vs Toluca");
+                        DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Apostó por");
+                        apuesta_choice.setValue("Pumas");
+                        DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Fecha");
+                       date_apuesta.setValue(formattedDate);
 
                        Log.d("la apuesta es por","pumas gana");
                    }
                    else if(toluca.isChecked() && !pumas.isChecked() && !empate1.isChecked())
                    {
                        Log.d("la apuesta es por","pumas toluca");
+                       DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Juego");
+                       apuesta.setValue("Pumas vs Toluca");
+                       DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Apostó por");
+                       apuesta_choice.setValue("Toluca");
+                       DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Fecha");
+                       date_apuesta.setValue(formattedDate);
 
                        Log.d("La apuesta es por","toluca gana");
                    }
                    else if((toluca.isChecked()&&pumas.isChecked())||(toluca.isChecked()&&empate1.isChecked())||(pumas.isChecked()&&empate1.isChecked()))
                    {
                        Log.d("por favor","solo escoja a un equipo");
+                       Toast.makeText(getApplicationContext(),"Por favor, solo escoja a un equipo",Toast.LENGTH_SHORT).show();
                    }
                    else if(empate1.isChecked()&&!pumas.isChecked()&&!toluca.isChecked())
                    {
                        Log.d("La apuesta es por","pumas toluca");
+                       DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Juego");
+                       apuesta.setValue("Pumas vs Toluca");
+                       DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Apostó por");
+                       apuesta_choice.setValue("Empate");
+                       DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas primer juego").child("Fecha");
+                       date_apuesta.setValue(formattedDate);
                        Log.d("La apuesta es por","empate");
                    }
                 //JUEGO AMERICA CHIVAS
                 if(america.isChecked() && !chivas.isChecked() && !empate2.isChecked())
                 {
                     Log.d("la apuesta es por","america chivas");
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Juego");
+                    apuesta.setValue("America vs Chivas");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Apostó por");
+                    apuesta_choice.setValue("America");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
 
                     Log.d("la apuesta es por","america gana");
                 }
                 else if(chivas.isChecked() && !america.isChecked() && !empate2.isChecked())
                 {
                     Log.d("la apuesta es por","america chivas");
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Juego");
+                    apuesta.setValue("America vs Chivas");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Apostó por");
+                    apuesta_choice.setValue("Chivas");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
+
 
                     Log.d("La apuesta es por","chivas gana");
                 }
                 else if((chivas.isChecked()&&america.isChecked())||(chivas.isChecked()&&empate2.isChecked())||(america.isChecked()&&empate2.isChecked()))
                 {
                     Log.d("por favor","solo escoja a un equipo");
+                    Toast.makeText(getApplicationContext(),"Por favor, solo escoja a un equipo",Toast.LENGTH_SHORT).show();
+
                 }
                 else if(empate2.isChecked()&&!america.isChecked()&&!chivas.isChecked())
                 {
                     Log.d("La apuesta es por","america chivas");
                     Log.d("La apuesta es por","empate");
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Juego");
+                    apuesta.setValue("America vs Chivas");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Apostó por");
+                    apuesta_choice.setValue("Empate");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas segundo juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
+
                 }
                 //JUEGO TIGRES PACHUCA
                 if(tigres.isChecked() && !pachuca.isChecked() && !empate3.isChecked())
@@ -120,21 +173,45 @@ public class GenerarJuegos extends AppCompatActivity {
                     Log.d("la apuesta es por","tigres pachuca");
 
                     Log.d("la apuesta es por","tigres gana");
+
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Juego");
+                    apuesta.setValue("Tigres vs Pachuca");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Apostó por");
+                    apuesta_choice.setValue("Tigres");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
+
                 }
                 else if(pachuca.isChecked() && !tigres.isChecked() && !empate3.isChecked())
                 {
                     Log.d("la apuesta es por","tigres pachuca");
 
                     Log.d("La apuesta es por","pachuca gana");
+
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Juego");
+                    apuesta.setValue("Tigres vs Pachuca");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Apostó por");
+                    apuesta_choice.setValue("Pachuca");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
                 }
                 else if((pachuca.isChecked()&&tigres.isChecked())||(pachuca.isChecked()&&empate3.isChecked())||(tigres.isChecked()&&empate3.isChecked()))
                 {
                     Log.d("por favor","solo escoja a un equipo");
+                    Toast.makeText(getApplicationContext(),"Por favor, solo escoja a un equipo",Toast.LENGTH_SHORT).show();
+
                 }
                 else if(empate3.isChecked()&&!tigres.isChecked()&&!pachuca.isChecked())
                 {
                     Log.d("La apuesta es por","tigres pachuca");
                     Log.d("La apuesta es por","empate");
+
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Juego");
+                    apuesta.setValue("Tigres vs Pachuca");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Apostó por");
+                    apuesta_choice.setValue("Empate");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas tercer juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
                 }
 
                 //JUEGO CRUZ AZUL ATLAS
@@ -143,21 +220,44 @@ public class GenerarJuegos extends AppCompatActivity {
                     Log.d("la apuesta es por","cruz azul vs atlas");
 
                     Log.d("la apuesta es por","cruz azul gana");
+
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Juego");
+                    apuesta.setValue("Cruz azul vs Atlas");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Apostó por");
+                    apuesta_choice.setValue("Cruz azul");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
                 }
                 else if(atlas.isChecked() && !cruz_azul.isChecked() && !empate4.isChecked())
                 {
                     Log.d("la apuesta es por","cruz azul vs atlas");
 
                     Log.d("La apuesta es por","atlas gana");
+
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Juego");
+                    apuesta.setValue("Cruz azul vs Atlas");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Apostó por");
+                    apuesta_choice.setValue("Atlas");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
                 }
                 else if((atlas.isChecked()&&cruz_azul.isChecked())||(atlas.isChecked()&&empate4.isChecked())||(cruz_azul.isChecked()&&empate4.isChecked()))
                 {
                     Log.d("por favor","solo escoja a un equipo");
+                    Toast.makeText(getApplicationContext(),"Por favor, solo escoja a un equipo",Toast.LENGTH_SHORT).show();
+
                 }
                 else if(empate4.isChecked()&&!cruz_azul.isChecked()&&!atlas.isChecked())
                 {
                     Log.d("La apuesta es por","cruz azul vs atlas");
                     Log.d("La apuesta es por","empate");
+
+                    DatabaseReference apuesta=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Juego");
+                    apuesta.setValue("Cruz azul vs Atlas");
+                    DatabaseReference apuesta_choice=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Apostó por");
+                    apuesta_choice.setValue("Empate");
+                    DatabaseReference date_apuesta=Root_reference.child("Usuario "+user).child("Apuestas cuarto juego").child("Fecha");
+                    date_apuesta.setValue(formattedDate);
                 }
 
             }
