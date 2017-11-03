@@ -63,6 +63,7 @@ public class LogInActivity extends Activity {
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
         auth = FirebaseAuth.getInstance();
+        final String result = auth.getCurrentUser().getUid();
 
 
 
@@ -133,25 +134,44 @@ public class LogInActivity extends Activity {
                                     }
                                 } else {
 
+
                                     //En el caso de que la autentificacion fue EXITOSA, envia al usuario a la clase llamada
                                     //SecondActivity
                                     //name_Ref.setValue(name.getText().toString().trim());      //check for trim method
                                     //email_Ref.setValue(inputEmail);
                                     //password_Ref.setValue(inputPassword);
                                     //Points_Ref.setValue("500");
-                                    final String routine_name = "Usuario " + name.getText().toString();
+                                    final String routine_name = "Usuario " + result;
 
-                                    DatabaseReference email_Ref = Root_reference.child(routine_name).child("Email ");
-                                    DatabaseReference name_Ref = Root_reference.child(routine_name).child("Nombre ");
-                                    DatabaseReference password_Ref = Root_reference.child(routine_name).child("Password ");
-                                    DatabaseReference Points_Ref = Root_reference.child(routine_name).child("Puntos ");
+                                    final DatabaseReference email_Ref = Root_reference.child(routine_name).child("Email ");
+                                    final DatabaseReference name_Ref = Root_reference.child(routine_name).child("Nombre ");
+                                    final DatabaseReference password_Ref = Root_reference.child(routine_name).child("Password ");
+                                    final DatabaseReference Points_Ref = Root_reference.child(routine_name).child("Puntos ");
+                                    DatabaseReference check_if_exist=Root_reference.child(routine_name);
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference reference;
+                                    check_if_exist.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            if(!dataSnapshot.exists())
+                                            {
+                                                name_Ref.setValue(name.getText().toString().trim());
+                                                email_Ref.setValue(inputEmail.getText().toString().trim());
+                                                password_Ref.setValue(inputPassword.getText().toString().trim());
+                                                Points_Ref.setValue(points);
+                                            }
 
-                                    name_Ref.setValue(name.getText().toString().trim());
-                                    email_Ref.setValue(inputEmail.getText().toString().trim());
-                                    password_Ref.setValue(inputPassword.getText().toString().trim());
-                                    Points_Ref.setValue(points);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
                                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                                    intent.putExtra("name",name.getText().toString().trim());
+                                    intent.putExtra("name",routine_name);
                                     startActivity(intent);
                                     finish();
                                 }

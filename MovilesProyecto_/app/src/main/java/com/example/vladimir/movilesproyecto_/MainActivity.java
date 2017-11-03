@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity implements FragmentWithButto
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent name_intent=this.getIntent();
+        final String name=name_intent.getExtras().getString("name");
 
         sign_out=(Button)findViewById(R.id.Sign_out_button);
         ver_perfil=(Button)findViewById(R.id.ver_perfil);
         ver_juegos=(Button)findViewById(R.id.juegos_proximos);
         recargar_Saldo=(Button)findViewById(R.id.recargar_saldo);
-        Intent name_intent=this.getIntent();
-        final String name=name_intent.getExtras().getString("name");
+
 
         ver_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements FragmentWithButto
                 //Log.d("actual name",String.valueOf(name));
                 //intent.putExtra("name",name);
                 startActivity(intent);
+
             }
         });
 
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements FragmentWithButto
     public void Create_fragment(View v)
     {
         FragmentManager manager=getFragmentManager();
+       // Log.d("actual name",String.valueOf(name));
+       // intent.putExtra("name",name);
         FragmentTransaction transaction=manager.beginTransaction();
         FragmentWithButton newFragment=FragmentWithButton.newInstance("Hello","Vlad");
         transaction.add(R.id.fragment_space,newFragment, "button");

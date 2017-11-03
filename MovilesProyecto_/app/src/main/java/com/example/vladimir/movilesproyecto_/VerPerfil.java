@@ -78,12 +78,11 @@ public class VerPerfil extends AppCompatActivity {
         Intent name_intent=this.getIntent();
         final String name=name_intent.getExtras().getString("name");
 
-        reference = database.getReference("Usuario "+name);
+        reference = database.getReference(name);
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("hey guy","im here");
                 //rutina.setText(dataSnapshot.getKey());
                 int i = 0;
                 Log.d("number of childs",""+dataSnapshot.getChildrenCount());
@@ -91,7 +90,6 @@ public class VerPerfil extends AppCompatActivity {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
 
                     if (i < 10) {
-                        Log.d("hey guy","im here 2");
                         textViewsName.get(i).setText(child.getKey());
                         textViewsVal.get(i).setText(child.getValue().toString());
                         Log.d("User key", child.getKey());

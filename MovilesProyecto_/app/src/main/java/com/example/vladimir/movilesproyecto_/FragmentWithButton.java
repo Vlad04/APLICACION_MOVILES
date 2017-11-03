@@ -2,9 +2,11 @@ package com.example.vladimir.movilesproyecto_;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.example.vladimir.movilesproyecto_.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +38,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 
 /**
@@ -49,17 +63,86 @@ public class FragmentWithButton extends Fragment implements ValueEventListener {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
-
+    Button principiante, profesional, clase_mundial;
+    int puntos_recarga;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference Root_reference = firebaseDatabase.getReference();
-
+    //String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+    String puntos_actuales;
+    Integer puntos_actuales_int;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference reference;
+    String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_with_button, container, false);
+        principiante=(Button)view.findViewById(R.id.Beginner);
+        profesional=(Button)view.findViewById(R.id.Medium);
+        clase_mundial=(Button)view.findViewById(R.id.Expert);
+        final int[] current_points = new int[1];
+        reference = database.getReference("Usuario "+user);
+        reference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //rutina.setText(dataSnapshot.getKey());
+                int i = 0;
+                Log.d("number of childs",""+dataSnapshot.getChildrenCount());
+                puntos_actuales= String.valueOf(dataSnapshot.child("Puntos ").getValue());
+                puntos_actuales_int=Integer.parseInt(puntos_actuales);
+               Log.d("PUNTOS ACTUALES",puntos_actuales);
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        principiante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Log.d("actual email", String.valueOf(email_Ref));
+                //String user_name=user.getDisplayName();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Puntos ");
+                puntos_recarga=100+puntos_actuales_int;
+                puntos_reference.setValue(puntos_recarga);
+
+                //actual_points.setValue(actual_points_integer+puntos_recarga);
+                Log.d("actual name", String.valueOf(user));
+                Log.d("actual money", String.valueOf(puntos_reference));
+                Log.d("actual charge money",String.valueOf(puntos_recarga));
+
+            }
+        });
+        profesional.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Puntos ");
+                puntos_recarga=500+puntos_actuales_int;
+                puntos_reference.setValue(puntos_recarga);
+            }
+        });
+        clase_mundial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Puntos ");
+                puntos_recarga=1000+puntos_actuales_int;
+                puntos_reference.setValue(puntos_recarga);            }
+        });
+
+        //DatabaseReference email_Ref = Root_reference.child(routine_name).child("Email ");
+
 
         return view;
     }
@@ -135,4 +218,5 @@ public class FragmentWithButton extends Fragment implements ValueEventListener {
         // TODO: Update argument type and name
         void toastText(String text, String text2);
     }
+
 }
