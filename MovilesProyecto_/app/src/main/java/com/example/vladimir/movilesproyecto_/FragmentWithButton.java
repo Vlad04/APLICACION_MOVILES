@@ -125,6 +125,8 @@ public class FragmentWithButton extends Fragment implements ValueEventListener {
             @Override
             public void onClick(View view) {
                 String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference puntos_reference = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
                 puntos_recarga=500+puntos_actuales_int;

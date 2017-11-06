@@ -13,6 +13,21 @@
         tools:layout_editor_absoluteX="-7dp"
         tools:layout_editor_absoluteY="-5dp">
 
+        <EditText
+            android:id="@+id/cantidad_apostar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Apostar_button"
+            android:layout_alignEnd="@+id/Apostar_button"
+            android:layout_alignLeft="@+id/Apostar_button"
+            android:layout_alignRight="@+id/Apostar_button"
+            android:layout_alignStart="@+id/Apostar_button"
+            android:layout_marginBottom="35dp"
+            android:hint="Cantidad"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
+
         <CheckBox
             android:id="@+id/empate_checkbox1"
             android:layout_width="wrap_content"
@@ -171,6 +186,18 @@
             android:layout_alignLeft="@+id/empate_checkbox1"
             android:layout_alignStart="@+id/empate_checkbox1"
             android:layout_marginTop="38dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="33dp"
+            android:text="Porfavor ingrese la cantidad que quiera apostar."
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="16sp"
+            android:layout_above="@+id/cantidad_apostar"
+            android:layout_alignRight="@+id/Pachuca_checkbox"
+            android:layout_alignEnd="@+id/Pachuca_checkbox" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.vladimir.movilesproyecto_;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,8 +30,10 @@ public class Calendario extends AppCompatActivity {
 
 
         calendar=(CalendarView) findViewById(R.id.calendar);
+
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
+
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMont) {
 
                 //Toast.makeText(getApplicationContext(),dayOfMont+"/"+month+"/"+year,Toast.LENGTH_LONG).show();
@@ -41,11 +44,11 @@ public class Calendario extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),dayOfWeek+"/",Toast.LENGTH_SHORT).show();
                 //Log.d("day of week", String.valueOf(dayOfWeek));
 
-
                 String day="";
                 if(dayOfWeek==1)
                 {
                     day="Sunday ";
+                    //LLEVAR A OTRA ACTIVIDAD LLAMADA GENERAR_JUEGO_LUUNES CON OTRO XML DIFERENTE CON LOS JUEGOS DEL LUNES
                 }
                 else if(dayOfWeek==2)
                 {
@@ -73,11 +76,12 @@ public class Calendario extends AppCompatActivity {
                 }
                 Log.d("current date",day);
 
-                if(dayOfWeek==7 || dayOfWeek==1)
+                if(dayOfWeek==2 || dayOfWeek==3 || dayOfWeek==4 || dayOfWeek==5)
                 {
-                    Toast.makeText(getApplicationContext(),"Rest for this day",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"No hay juegos para este dia",Toast.LENGTH_SHORT).show();
                 }
                 else {
+
 
 
                     Intent intent = new Intent(Calendario.this, GenerarJuegos.class);
@@ -100,6 +104,7 @@ public class Calendario extends AppCompatActivity {
                 }
             }
         });
+
 
 
 

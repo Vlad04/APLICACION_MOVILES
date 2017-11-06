@@ -43,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 import java.util.StringTokenizer;
 public class GenerarJuegos extends AppCompatActivity {
 
@@ -50,6 +51,7 @@ public class GenerarJuegos extends AppCompatActivity {
     CheckBox america, pumas, toluca, chivas, tigres, pachuca, cruz_azul, atlas;
     CheckBox empate1,empate2,empate3,empate4;
     Button apostar;
+    EditText cantidadApostar;
     private FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
     private DatabaseReference Root_reference=firebaseDatabase.getReference();
     String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -71,7 +73,37 @@ public class GenerarJuegos extends AppCompatActivity {
         empate3=(CheckBox)findViewById(R.id.empate_checkbox3);
         empate4=(CheckBox)findViewById(R.id.empate_checkbox4);
         apostar=(Button)findViewById(R.id.Apostar_button);
+        cantidadApostar=(EditText)findViewById(R.id.cantidad_apostar);
+        /*
+        RANDOM
+        RANDOM_JUEGO_1
+            1:GANO PUMAS
+            2:EMPATE
+            3:GANO TOLUCA
 
+        RANDOM_JUEGO_2
+            1:GANO CHIVAS
+            2:EMPATE
+            3:GANO AMERICA
+
+        RANDOM_JUEGO_3
+            1:GANO TIGRES
+            2:EMPATE
+            3:GANO PACHUCA
+
+        RANDOM_JUEGO_4
+            1:GANO CRUZ AZUL
+            2:EMPATE
+            3:GANO ATLAS
+
+        DECISION_USUARIO
+
+        IF(PUMAS.ISCHECKED() && RANDOM_JUEGO_1==1)
+            FIREBASE GANAR 1000 PUNTOS
+        IF ELSE{PUMAS.ISCHECKED() && RANDOM_JUEGO_1!==1 || RANDOM_JUEGO_1==2
+             FIREBASE PERDER cantidad_apostada
+
+         */
         apostar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +111,83 @@ public class GenerarJuegos extends AppCompatActivity {
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                 String formattedDate = df.format(c.getTime());
+
+                try {
+                    String cantidad_apostada = cantidadApostar.getText().toString();
+
+                    int cantidad_apostada_int = Integer.parseInt(cantidad_apostada);
+                    Log.d("Cantidad apostada", String.valueOf(cantidad_apostada_int));
+                }catch(Exception e)
+                {
+                    Toast.makeText(getApplicationContext(),"Por favor ingrese los datos de manera correcta",Toast.LENGTH_SHORT).show();
+                }
+                Random r=new Random();
+                int resultado_random_juego1=r.nextInt((3-1)+1)+1;
+                int resultado_random_juego2=r.nextInt((3-1)+1)+1;
+                int resultado_random_juego3=r.nextInt((3-1)+1)+1;
+                int resultado_random_juego4=r.nextInt((3-1)+1)+1;
+                Log.d("EL RESULTADO RANDOM ES",String.valueOf(resultado_random_juego1));
+
+                //RANDOMM JUEGO PUMAS TOLUCA
+                if(resultado_random_juego1==1)
+                {
+                    Log.d("Gano","Pumas");
+                }
+                else if(resultado_random_juego1==2)
+                {
+                    Log.d("Gano","Empate");
+                }
+                else if(resultado_random_juego1==3)
+                {
+                    Log.d("Gano","Toluca");
+                }
+
+                //RANDOM JUEGO CHIVAS AMERICA
+
+                if(resultado_random_juego2==1)
+                {
+                    Log.d("Gano","Chivas");
+                }
+                else if(resultado_random_juego2==2)
+                {
+                    Log.d("Gano","Empate");
+                }
+                else if(resultado_random_juego2==3)
+                {
+                    Log.d("Gano","America");
+                }
+
+
+                //RANDOM JUEGO TIGRES PACHUCA
+
+                if(resultado_random_juego3==1)
+                {
+                    Log.d("Gano","Tigres");
+                }
+                else if(resultado_random_juego3==2)
+                {
+                    Log.d("Gano","Empate");
+                }
+                else if(resultado_random_juego3==3)
+                {
+                    Log.d("Gano","Pachuca");
+                }
+
+
+                //RANDOM JUEGO CRUZ AZUL ATLAS
+                if(resultado_random_juego4==1)
+                {
+                    Log.d("Gano","Cruz azul");
+                }
+                else if(resultado_random_juego4==2)
+                {
+                    Log.d("Gano","Empate");
+                }
+                else if(resultado_random_juego4==3)
+                {
+                    Log.d("Gano","Atlas");
+                }
+
 
                 int day = calendar.get(Calendar.DATE);
 

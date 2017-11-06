@@ -13,16 +13,16 @@
     tools:context="com.example.vladimir.movilesproyecto_.VerPerfil">
 
     <Button
-        android:text="Generate"
         android:id="@+id/generate_plan_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp"
+        android:background="@android:color/holo_red_light"
         android:shape="oval"
-        android:textColor="@android:color/white"
-        android:background="@android:color/holo_red_light" />
+        android:text="Generar"
+        android:textColor="@android:color/white" />
 
 
     <TextView
