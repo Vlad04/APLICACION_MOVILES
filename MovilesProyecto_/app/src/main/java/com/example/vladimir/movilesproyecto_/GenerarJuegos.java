@@ -54,8 +54,13 @@ public class GenerarJuegos extends AppCompatActivity {
     EditText cantidadApostar;
     private FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
     private DatabaseReference Root_reference=firebaseDatabase.getReference();
-    String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference reference;
+    String puntos_actuales;
+    Integer puntos_actuales_int;
 
+    String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    int cantidad_ganar=1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +79,11 @@ public class GenerarJuegos extends AppCompatActivity {
         empate4=(CheckBox)findViewById(R.id.empate_checkbox4);
         apostar=(Button)findViewById(R.id.Apostar_button);
         cantidadApostar=(EditText)findViewById(R.id.cantidad_apostar);
+
+        //if(date<actual_Date)
+        //disapble button
+        
+        //cantidadApostar.setFocusable(false);
         /*
         RANDOM
         RANDOM_JUEGO_1
@@ -111,9 +121,12 @@ public class GenerarJuegos extends AppCompatActivity {
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                 String formattedDate = df.format(c.getTime());
+                Log.d("FORMATTED DAY",String.valueOf(formattedDate));
 
                 try {
                     String cantidad_apostada = cantidadApostar.getText().toString();
+                    DatabaseReference ref_cantidad_apostada=Root_reference.child("Usuario "+user).child("Apuestas del Usuario").child("Fecha: "+formattedDate).child("Cantidad Apostada: ");
+                    ref_cantidad_apostada.setValue(cantidad_apostada);
 
                     int cantidad_apostada_int = Integer.parseInt(cantidad_apostada);
                     Log.d("Cantidad apostada", String.valueOf(cantidad_apostada_int));
@@ -128,63 +141,141 @@ public class GenerarJuegos extends AppCompatActivity {
                 int resultado_random_juego4=r.nextInt((3-1)+1)+1;
                 Log.d("EL RESULTADO RANDOM ES",String.valueOf(resultado_random_juego1));
 
-                //RANDOMM JUEGO PUMAS TOLUCA
+                reference = database.getReference("Usuario "+user).child("Perfil");
+                reference.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //rutina.setText(dataSnapshot.getKey());
+                        int i = 0;
+                        Log.d("number of childs",""+dataSnapshot.getChildrenCount());
+                        puntos_actuales= String.valueOf(dataSnapshot.child("Puntos ").getValue());
+                        puntos_actuales_int=Integer.parseInt(puntos_actuales);
+                        Log.d("PUNTOS ACTUALES",puntos_actuales);
+                    }
+
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                DatabaseReference cantidad_apostada_ganar = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
+
+                //GANAR O PERDER CON JUEGOS
+                if(resultado_random_juego1==1 && pumas.isChecked())
+                {
+                    cantidad_apostada_ganar.setValue(puntos_actuales_int+cantidad_ganar);
+                }
+                else if(resultado_random_juego1==2 && empate1.isChecked())
+                {
+                    cantidad_apostada_ganar.setValue(puntos_actuales_int+cantidad_ganar);
+                }
+                else if(resultado_random_juego1==3 && toluca.isChecked())
+                {
+                    cantidad_apostada_ganar.setValue(puntos_actuales_int+cantidad_ganar);
+                }
+                /*else if(resultado_random_juego1==1 && !pumas.isChecked() || resultado_random_juego1==2 && !empate1.isChecked() || resultado_random_juego1==3 && !toluca.isChecked()){
+                    cantidad_apostada_ganar.setValue(puntos_actuales_int+cantidad_ganar);
+                    Log.d("Perdio","mucho dinero");
+                }*/
+
+                /*
+                else if(resultado_random_juego1==2 && empate1.isChecked())
+                {
+                    DatabaseReference cantidad_apostada_ganar = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
+                    cantidad_apostada_ganar.setValue(puntos_actuales_int+cantidad_ganar);
+                }
+                else if(resultado_random_juego1==3 && toluca.isChecked())
+                {
+                    DatabaseReference cantidad_apostada_ganar = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
+                    cantidad_apostada_ganar.setValue(puntos_actuales_int+cantidad_ganar);
+                }
+                else{
+                    DatabaseReference cantidad_apostada_ganar = Root_reference.child("Usuario "+user).child("Perfil").child("Puntos ");
+                    cantidad_apostada_ganar.setValue(puntos_actuales_int-1000);
+                }
+                */
+                //RANDOMM JUEGO PUMAS TOLUCA == resultado_random_juego_1
                 if(resultado_random_juego1==1)
                 {
+                    final DatabaseReference Juego1_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 1 ");
+                    Juego1_ref.setValue("Gano Pumas");
                     Log.d("Gano","Pumas");
                 }
                 else if(resultado_random_juego1==2)
                 {
+                    final DatabaseReference Juego1_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 1 ");
+                    Juego1_ref.setValue("Empate");
                     Log.d("Gano","Empate");
                 }
                 else if(resultado_random_juego1==3)
                 {
+                    final DatabaseReference Juego1_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 1 ");
+                    Juego1_ref.setValue("Gano Toluca");
                     Log.d("Gano","Toluca");
                 }
 
-                //RANDOM JUEGO CHIVAS AMERICA
+                //RANDOM JUEGO CHIVAS AMERICA == resultado_random_juego2
 
                 if(resultado_random_juego2==1)
                 {
+                    final DatabaseReference Juego2_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 2 ");
+                    Juego2_ref.setValue("Gano Chivas");
                     Log.d("Gano","Chivas");
                 }
                 else if(resultado_random_juego2==2)
                 {
+                    final DatabaseReference Juego2_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 2 ");
+                    Juego2_ref.setValue("Empate");
                     Log.d("Gano","Empate");
                 }
                 else if(resultado_random_juego2==3)
                 {
+                    final DatabaseReference Juego2_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 2 ");
+                    Juego2_ref.setValue("Gano America");
                     Log.d("Gano","America");
                 }
 
-
-                //RANDOM JUEGO TIGRES PACHUCA
+                //RANDOM JUEGO TIGRES PACHUCA == resultado_random_juego3
 
                 if(resultado_random_juego3==1)
                 {
+                    final DatabaseReference Juego3_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 3 ");
+                    Juego3_ref.setValue("Gano Tigres");
                     Log.d("Gano","Tigres");
                 }
                 else if(resultado_random_juego3==2)
                 {
+                    final DatabaseReference Juego3_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 3 ");
+                    Juego3_ref.setValue("Empate");
                     Log.d("Gano","Empate");
                 }
                 else if(resultado_random_juego3==3)
                 {
+                    final DatabaseReference Juego3_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 3 ");
+                    Juego3_ref.setValue("Gano Pachuca");
                     Log.d("Gano","Pachuca");
                 }
 
 
-                //RANDOM JUEGO CRUZ AZUL ATLAS
+                //RANDOM JUEGO CRUZ AZUL ATLAS == resultado_random_juego4
                 if(resultado_random_juego4==1)
                 {
+                    final DatabaseReference Juego4_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 4 ");
+                    Juego4_ref.setValue("Gano Cruz Azul");
                     Log.d("Gano","Cruz azul");
                 }
                 else if(resultado_random_juego4==2)
                 {
+                    final DatabaseReference Juego4_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 4 ");
+                    Juego4_ref.setValue("Empate");
                     Log.d("Gano","Empate");
                 }
                 else if(resultado_random_juego4==3)
                 {
+                    final DatabaseReference Juego4_ref = Root_reference.child("Usuario "+user).child("Resultados").child("Juego 4 ");
+                    Juego4_ref.setValue("Gano Atlas");
                     Log.d("Gano","Atlas");
                 }
 
